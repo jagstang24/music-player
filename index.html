@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Match-Panel Deluxe</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #1a1a1a; color: white; padding: 50px; }
+        .controls { margin-bottom: 20px; }
+        button { width: 200px; height: 80px; margin: 10px; font-size: 18px; cursor: pointer; border-radius: 10px; border: none; font-weight: bold; }
+        .btn-goal { background: #e62117; color: white; }
+        .btn-stop { background: #555; color: white; width: 425px; }
+        /* Vi gör videon synlig men liten, så vi ser att den lever */
+        #yt-frame { width: 425px; height: 240px; border: 2px solid #444; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>MATCH-PANEL</h1>
+
+    <div class="controls">
+        <button class="btn-goal" onclick="playSong('CQPpHWfJxSU', 58)">MÅL (58s)</button>
+        <button class="btn-goal" onclick="playSong('jNQXAC9IVRw', 10)">UTVISNING (10s)</button>
+        <br>
+        <button class="btn-stop" onclick="stopSong()">STOPPA ALLT</button>
+    </div>
+
+    <iframe id="yt-frame" src="" frameborder="0" allow="autoplay"></iframe>
+
+    <script>
+        function playSong(id, seconds) {
+            var frame = document.getElementById('yt-frame');
+            // Vi bygger en länk som säger åt YouTube att starta direkt (autoplay=1) 
+            // och börja på rätt sekund (start=X)
+            frame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&start=" + seconds;
+        }
+
+        function stopSong() {
+            var frame = document.getElementById('yt-frame');
+            frame.src = ""; // Genom att tömma källan tystnar ljudet direkt
+        }
+    </script>
+
+</body>
+</html>
